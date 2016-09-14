@@ -1,8 +1,7 @@
 import javax.annotation.Resource;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.jms.ConnectionFactory;
-import javax.jms.Destination;
+import javax.jms.*;
 
 
 /**
@@ -25,4 +24,33 @@ public class MainBean {
     private ConnectionFactory connectionFactory;
     @Resource(mappedName = "jms/TestPoolTopic")
     private Destination destination;
+
+    public void go(){
+        try{
+            Connection connection = connectionFactory.createConnection();
+            Session session = connection.createSession(true, Session.AUTO_ACKNOWLEDGE);
+            MessageProducer messageProducer = session.createProducer(destination);
+
+            TextMessage message = session.createTextMessage();
+
+            message.setStringProperty("clientType", "web clien");
+
+            message.setText(text);
+
+            messageProducer.send(message);
+
+
+
+            messageProducer.close();
+            session.close();
+            connection.close();
+
+
+
+        } catch (JMSException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 }
