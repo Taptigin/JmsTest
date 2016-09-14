@@ -1,3 +1,4 @@
+import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -10,8 +11,8 @@ import javax.jms.*;
 @ManagedBean(name = "mainBean")
 @SessionScoped
 public class MainBean {
-    String text = "123";
-    String text2;
+    String text = "1253";
+    String text2 = "aaa";
 
     public String getText2() {
         onMessage();
@@ -37,7 +38,6 @@ public class MainBean {
     private ConnectionFactory connectionFactory;
     @Resource(mappedName = "jms/TestPoolTopic")
     private Destination destination;
-
     public void go(){
         try{
             Connection connection = connectionFactory.createConnection();
@@ -79,7 +79,7 @@ public class MainBean {
 
             Message msg =  consumer.receive();
 
-            text2 = msg.toString();
+            text2 = "qqq";
 
             connection.close();
 
