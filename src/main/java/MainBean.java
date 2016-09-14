@@ -11,8 +11,21 @@ import javax.jms.*;
 @SessionScoped
 public class MainBean {
     String text = "123";
+    String text2;
+
+    public String getText2() {
+        onMessage();
+        return text2;
+    }
+
+    public void setText2(String text2) {
+        this.text2 = text2;
+    }
 
     public String getText() {
+        go();
+        System.out.println(text);
+
         return text;
     }
 
@@ -44,6 +57,36 @@ public class MainBean {
             messageProducer.close();
             session.close();
             connection.close();
+
+
+
+        } catch (JMSException e) {
+            e.printStackTrace();
+        }
+
+
+    }
+
+    //---------------------
+
+    public void onMessage() {
+
+        try {
+            Connection connection = connectionFactory.createConnection();
+            Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+            MessageConsumer consumer = session.createConsumer(destination);
+            connection.start();
+
+            Message msg =  consumer.receive();
+
+            text2 = msg.toString();
+
+            connection.close();
+
+            for (int i = 0; i < 10; i++) {
+                System.out.println(msg);
+            }
+
 
 
 
