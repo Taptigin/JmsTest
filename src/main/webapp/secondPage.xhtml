@@ -7,5 +7,11 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
     <h:outputLabel value="Hello, world"/>
+    <br/>
+    <h:form>
+        <h:commandButton value="ssss" action="#{mainBean.onMessage}"/>
+        <br/>
+        <h:outputLabel value="#{mainBean.text3}"/>
+    </h:form>
 </f:view>
 </html>

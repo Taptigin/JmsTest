@@ -49,7 +49,7 @@ public class MainBean {
 
             message.setStringProperty("clientType", "web clien");
 
-            message.setText(text);
+            message.setText("Test Text ы");
 
             messageProducer.send(message);
 
@@ -69,8 +69,17 @@ public class MainBean {
     }
 
     //---------------------
+    String text3;
 
-    public void onMessage() {
+    public String getText3() {
+        return text3;
+    }
+
+    public void setText3(String text3) {
+        this.text3 = text3;
+    }
+
+    public String onMessage() {
 
         try {
             Connection connection = connectionFactory.createConnection();
@@ -78,11 +87,13 @@ public class MainBean {
             MessageConsumer consumer = session.createConsumer(destination);
             connection.start();
 
-            Message msg =  consumer.receive();
+            TextMessage msg = (TextMessage) consumer.receive();
 
-            text2 = "qqq";
+            text3 = msg.getText();
 
             connection.close();
+            consumer.close();
+            session.close();
 
             for (int i = 0; i < 10; i++) {
                 System.out.println(msg);
@@ -95,6 +106,6 @@ public class MainBean {
             e.printStackTrace();
         }
 
-
+        return "nextPage";
     }
 }
