@@ -15,7 +15,7 @@ public class MainBean {
     String text2 = "aaa";
 
     public String getText2() {
-        onMessage();
+        //onMessage();
         return text2;
     }
 
@@ -24,7 +24,7 @@ public class MainBean {
     }
 
     public String getText() {
-        go();
+        //go();
         System.out.println(text);
 
         return text;
@@ -38,6 +38,7 @@ public class MainBean {
     private ConnectionFactory connectionFactory;
     @Resource(mappedName = "jms/TestPoolTopic")
     private Destination destination;
+
     public void go(){
         try{
             Connection connection = connectionFactory.createConnection();
