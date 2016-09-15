@@ -39,7 +39,7 @@ public class MainBean {
     @Resource(mappedName = "jms/TestPoolTopic")
     private Destination destination;
 
-    public void go(){
+    public String go(){
         try{
             Connection connection = connectionFactory.createConnection();
             Session session = connection.createSession(true, Session.AUTO_ACKNOWLEDGE);
@@ -65,7 +65,7 @@ public class MainBean {
             e.printStackTrace();
         }
 
-
+        return "nextPage";
     }
 
     //---------------------
