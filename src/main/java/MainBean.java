@@ -28,12 +28,12 @@ public class MainBean {
     public String go(){
         try{
             Connection connection = connectionFactory.createConnection();
-            Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
+            Session session = connection.createSession(true, Session.AUTO_ACKNOWLEDGE);
             MessageProducer messageProducer = session.createProducer(destination);
 
             TextMessage message = session.createTextMessage();
 
-            message.setStringProperty("clientType", "web clien");
+            message.setStringProperty("clientType", "web client");
 
             message.setText(writeMessage);
 
@@ -55,41 +55,5 @@ public class MainBean {
     }
 
     //---------------------
-    String receivedMessage;
 
-    public String getReceivedMessage() {
-        return receivedMessage;
-    }
-
-    public void setReceivedMessage(String receivedMessage) {
-        this.receivedMessage = receivedMessage;
-    }
-
-    public String onMessage() {
-
-        try {
-            Connection connection = connectionFactory.createConnection();
-            Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
-            MessageConsumer consumer = session.createConsumer(destination);
-            connection.start();
-
-            TextMessage msg = (TextMessage) consumer.receive();
-
-            receivedMessage = msg.getText();
-
-            connection.close();
-            consumer.close();
-            session.close();
-
-
-
-
-
-
-        } catch (JMSException e) {
-            e.printStackTrace();
-        }
-
-        return "nextPage";
-    }
 }

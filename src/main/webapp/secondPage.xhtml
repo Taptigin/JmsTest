@@ -6,12 +6,12 @@
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:f="http://xmlns.jcp.org/jsf/core">
 <f:view>
-    <h:outputLabel value="Hello, world"/>
+
     <br/>
     <h:form>
-        <h:commandButton value="ssss" action="#{mainBean.onMessage}"/>
+        <h:commandButton value="Получить сообщение" action="#{twoBean.onMessage}"/>
         <br/>
-        <h:outputLabel value="#{mainBean.receivedMessage}"/>
+        <h:outputLabel value="#{twoBean.receivedMessage}"/>
     </h:form>
 </f:view>
 </html>
