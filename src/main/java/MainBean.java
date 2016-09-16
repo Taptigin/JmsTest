@@ -28,7 +28,7 @@ public class MainBean {
     public String go(){
         try{
             Connection connection = connectionFactory.createConnection();
-            Session session = connection.createSession(true, Session.AUTO_ACKNOWLEDGE);
+            Session session = connection.createSession(false, Session.AUTO_ACKNOWLEDGE);
             MessageProducer messageProducer = session.createProducer(destination);
 
             TextMessage message = session.createTextMessage();
