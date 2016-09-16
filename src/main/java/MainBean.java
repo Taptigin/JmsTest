@@ -95,9 +95,7 @@ public class MainBean {
             consumer.close();
             session.close();
 
-            for (int i = 0; i < 10; i++) {
-                System.out.println(msg);
-            }
+
 
 
 
