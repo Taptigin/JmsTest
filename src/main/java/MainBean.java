@@ -1,4 +1,3 @@
-import javax.annotation.PostConstruct;
 import javax.annotation.Resource;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -56,14 +55,14 @@ public class MainBean {
     }
 
     //---------------------
-    String text3;
+    String receivedMessage;
 
-    public String getText3() {
-        return text3;
+    public String getReceivedMessage() {
+        return receivedMessage;
     }
 
-    public void setText3(String text3) {
-        this.text3 = text3;
+    public void setReceivedMessage(String receivedMessage) {
+        this.receivedMessage = receivedMessage;
     }
 
     public String onMessage() {
@@ -76,7 +75,7 @@ public class MainBean {
 
             TextMessage msg = (TextMessage) consumer.receive();
 
-            text3 = msg.getText();
+            receivedMessage = msg.getText();
 
             connection.close();
             consumer.close();
